@@ -22,7 +22,7 @@ def edit_descricao(id:str,descricao: str, ids= Depends(get_vaga_collection)):
     return newDescription
 
 def edit_detalhe(id:str,detalhes: str, ids= Depends(get_vaga_collection)):
-    newDatail = ids.update_one({"_id": ObjectId(id)}, {"$set":{"destalhes": detalhes}})
+    newDetail = ids.update_one({"_id": ObjectId(id)}, {"$set":{"destalhes": detalhes}})
     return newDetail
 
 def edit_type(id:str,tipoVaga: str, ids= Depends(get_vaga_collection)):

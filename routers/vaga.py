@@ -36,7 +36,7 @@ def edit_descricao( id: str, descricao:str, vagas = Depends(get_vaga_collection)
 
 @router.put("/id/edit-details")
 def edit_detalhe( id: str, detalhes:str, vagas = Depends(get_vaga_collection)):
-    vaga.edit_detalhe( id, detathes, vagas)
+    vaga.edit_detalhe( id, detalhes, vagas)
     return {"mensagem": "Detalhes foram atualizadas"}
 
 @router.put("/id/edit-type")
