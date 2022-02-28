@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from routers import empresa
 from routers import usuario
 from routers import vaga
-from auth import *
+from autorize import *
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()

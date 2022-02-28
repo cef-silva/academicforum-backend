@@ -32,18 +32,28 @@ def usuarioShow(usuarios = Depends(get_usuario_collection)):
     return usuario.get_all(usuarios)
 
 @router.put("/id/edit-about")
-def edit_about( id: str, about:str, users = Depends(get_usuario_collection)):
-    user.edit_about( id, about, users)
+def edit_about( id: str, about:str, usuarios = Depends(get_usuario_collection)):
+    usuario.edit_about( id, about, usuarios)
     return {"mensagem": "About foi atualizado"}
 
 @router.put("/id/edit-profpic")
-def edit_profpic( id: str, profilePicture:str, users = Depends(get_usuario_collection)):
-    user.edit_profpic( id, profilePicture, users)
+def edit_profpic( id: str, profilePicture:str, usuarios = Depends(get_usuario_collection)):
+    usuario.edit_profpic( id, profilePicture, usuarios)
     return {"mensagem": "Foto de Perfil foi atualizada"}
+
+@router.put("/id/edit-profession")
+def edit_profession( id: str, profession:str, usuarios = Depends(get_usuario_collection)):
+    usuario.edit_profession( id, profession, usuarios)
+    return {"mensagem": "Profissão foi atualizada"}
+
+@router.delete("/id/delete-acount")
+def deleteUser(id: str, usuarios = Depends(get_usuario_collection)):
+    usuario.deleteUser(id, usuarios)
+    return{"mensagem":"Perfil deletado"}
 
 @router.get("/id", response_model=UsuarioDisplay)
 def getbyid(id:str, usuarios=Depends(get_usuario_collection)):
-   userFound = user.get_by_id(id,usuarios)
+   userFound = usuario.get_by_id(id,usuarios)
    return userFound
 
 

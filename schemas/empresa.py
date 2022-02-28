@@ -27,10 +27,12 @@ class EmpresaBase(BaseModel):
 
 class EmpresaDisplay(BaseModel):
     id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
-    nomeEmpresa: str
+    nomeEmpresa: Optional[str]
     email: str
     profilePicture: Optional[str]
     about: Optional[str]
+    metier: Optional[str]
+    numberVacancies: Optional[int]
     class Config():
         orm_mode=True
         allow_population_by_field_name = True

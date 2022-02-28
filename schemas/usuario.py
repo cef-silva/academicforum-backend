@@ -27,10 +27,11 @@ class UsuarioBase(BaseModel):
 
 class UsuarioDisplay(BaseModel):
     id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
-    name: str
+    name: Optional[str]
     email: str
     profilePicture: Optional[str]
     about: Optional[str]
+    profession: Optional[str]
     class Config():
         orm_mode=True
         allow_population_by_field_name = True

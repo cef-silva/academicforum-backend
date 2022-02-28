@@ -25,17 +25,17 @@ def edit_about(id:str,about: str, ids= Depends(get_usuario_collection)):
     newAbout = ids.update_one({"_id": ObjectId(id)}, {"$set":{"about": about}})
     return newAbout
 
-def edit_university(id:str, faculdade: str, ids = Depends(get_usuario_collection)):
-    newUniversity = ids.update_one({"_id": ObjectId(id)}, {"$set":{"faculdade":faculdade}})
-    return newUniversity
-
-def edit_graduation(id:str, curso: str, ids = Depends(get_usuario_collection)):
-    newGraduation = ids.update_one({"_id": ObjectId(id)}, {"$set":{"curso":curso}})
-    return newGraduation
-
 def edit_profpic(id:str,profilePicture: str, ids= Depends(get_usuario_collection)):
     newPicture = ids.update_one({"_id": ObjectId(id)}, {"$set":{"profilePicture": profilePicture}})
     return newPicture
+
+def edit_profession(id:str,profession: str, ids= Depends(get_usuario_collection)):
+    newProfession = ids.update_one({"_id": ObjectId(id)}, {"$set":{"profession": profession}})
+    return newProfession
+
+def deleteUser(id:str, ids= Depends(get_usuario_collection)):
+    deletedAcount = ids.delete_one({"_id": ObjectId(id)})
+    return deletedAcount
 
 def get_by_id(id: str, ids = Depends(get_usuario_collection)):
     id = ids.find_one({'_id':ObjectId(id)})

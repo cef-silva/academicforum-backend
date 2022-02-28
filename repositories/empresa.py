@@ -1,22 +1,30 @@
 
 from database.hashing import Hash
 from schemas.empresa import EmpresaBase, EmpresaDisplay
-from database.db import get_empresa_collection
+from database.db import get_empresa_collection, get_usuario_collection
 from database.db import conn
 from fastapi import Depends
 from bson import ObjectId
 
 
-def createEmpresa (request: EmpresaBase, empresas):
-    new_empresa = request.dict(by_alias=True)
-    new_empresa["password"] = Hash.bcrypt (new_empresa["password"])
-    conn.empresas.insert_one(new_empresa)
-    return new_empresa
 
-def get_by_email(email: str, empresas = Depends(get_empresa_collection)):
+def edit_metier(id:str,metier: str, ids= Depends(get_empresa_collection)):
+    newMetier = ids.update_one({"_id": ObjectId(id)}, {"$set":{"metier": metier}})
+    return newMetier
+
+def edit_about(id:str,about: str, ids= Depends(get_empresa_collection)):
+    newAbout = ids.update_one({"_id": ObjectId(id)}, {"$set":{"about": about}})
+    return newAbout
+
+def edit_profpic(id:str,profilePicture: str, ids= Depends(get_usuario_collection)):
+    newPicture = ids.update_one({"_id": ObjectId(id)}, {"$set":{"profilePicture": profilePicture}})
+    return newPicture
+
+
+def get_by_email(email: str, empresas = Depends(get_usuario_collection)):
     empresa = empresas.find_one({'email':email})
     return empresa
 
-def get_all(empresas):  
-    return list(empresas.find())
+def get_all(usuarios):  
+    return list(usuarios.find())
 

@@ -30,7 +30,7 @@ class VagaBase(BaseModel):
     empresa: str
 
 class VagaDisplay(BaseModel):
-    _id: ObjectId
+    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
     titulo: str
     descricao: str
     detalhes: str
@@ -43,3 +43,4 @@ class VagaDisplay(BaseModel):
         allow_population_by_field_name = True
         arbitrary_types_allowed = True
         json_encoders = {ObjectId: str}
+
